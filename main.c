@@ -16,6 +16,7 @@ int main(int argc, char *argv[])
 	hash_t arr[HASHTABLE_SIZE];
 	create_HT(arr,HASHTABLE_SIZE);
 	int choice;
+	printf("\n");
 	while(1)
 	{
 		printf("1. Create DATABASE\n2. Display DATABASE\n3. Update DATABASE\n4. Search\n5. Save DATABASE\n6. Exit\nEnter you choice : ");
@@ -28,7 +29,11 @@ int main(int argc, char *argv[])
 				  printf("\n");
 				  break;
 			case 2:
-			      display_database(arr,HASHTABLE_SIZE);
+			      if(display_database(arr,HASHTABLE_SIZE)==FAILURE)
+				  {
+					printf("No Database found!\n");
+					printf("Please create Database to continue\n");
+				  }
 				  printf("\n");
 				  break;
 			case 3:

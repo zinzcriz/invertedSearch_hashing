@@ -26,18 +26,7 @@ int create_database(file_list *listhead, hash_t *arr)
 			//printf("%s file is opened\n", temp->file_name);
 			while (fscanf(fp, "%s", str) != EOF)
 			{
-				if(isdigit(str[0]))
-				{
-					index=26;
-				}
-				else if(ispunct(str[0]))
-				{
-					index=27;
-				}
-				else
-				{
-				index = str[0] % 97;
-				}
+			    index=find_index(str[0]);
 				//printf("%d\n",index);
 				if (arr[index].link == NULL)
 				{
