@@ -16,17 +16,17 @@ int display_database(hash_t *arr,int size)
                 s_link=m_link->sub_link;
                 printf("[%d]",i);
                 printf("\t");
-                printf("[ %s ]",m_link->word);
+                printf("[%s]",m_link->word);
                 printf("\t");
                 printf("Filecount: %d",m_link->file_count);
                 printf("\t");
-                printf("Files:");
+                printf("Files: ");
                 while(s_link!=NULL)
                 {
-                    printf("%s",s_link->filename);
+                    printf("%s  %d",s_link->filename,s_link->word_count);
                     printf("\t");
-                    printf("%d",s_link->word_count);
-                    printf("  ");
+                    //printf("%d",s_link->word_count);
+                    //printf("  ");
                     s_link=s_link->link;
                 }
                 m_link=m_link->main_link;

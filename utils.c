@@ -54,8 +54,12 @@ int check_args(int argc,char *argv[],file_list **list_head)
     else
     {
     printf("Argument count should be more than one\n");
+    return FAILURE;
     }
-    print_list(*list_head);
+    if(*list_head==NULL)
+        return FAILURE;
+    //print_list(*list_head);
+    return SUCCESS;
 }
 
 int open_files(file_list *listhead)

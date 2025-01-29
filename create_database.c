@@ -23,7 +23,7 @@ int create_database(file_list *listhead, hash_t *arr)
 		FILE *fp = fopen(temp->file_name, "r");
 		if (fp)
 		{
-			printf("%s file is opened\n", temp->file_name);
+			//printf("%s file is opened\n", temp->file_name);
 			while (fscanf(fp, "%s", str) != EOF)
 			{
 				if(isdigit(str[0]))
@@ -52,7 +52,7 @@ int create_database(file_list *listhead, hash_t *arr)
 					s_link->link = NULL;
 					s_link->word_count = 1;
 					m_link->sub_link = s_link;
-					printf("%s\n", (arr[index].link)->word);
+					//printf("%s\n", (arr[index].link)->word);
 				}
 				else
 				{
@@ -70,7 +70,7 @@ int create_database(file_list *listhead, hash_t *arr)
 								{
 									s_link->word_count += 1;
 									s_flag = 1;
-									printf("%s\n",m_link->word);
+									//printf("%s\n",m_link->word);
 								}
 								// if(s_link->link!=NULL)
 								s_prev = s_link;
@@ -84,7 +84,7 @@ int create_database(file_list *listhead, hash_t *arr)
 								s_link->word_count = 1;
 								s_prev->link = s_link;
 								m_link->file_count += 1;
-								printf("%s\n",m_link->word);
+								//printf("%s\n",m_link->word);
 							}
 							s_flag = 0;
 						}
@@ -104,7 +104,7 @@ int create_database(file_list *listhead, hash_t *arr)
 						s_link->word_count = 1;
 						m_link->sub_link = s_link;
 						m_prev->main_link=m_link;
-						printf("%s\n", m_link->word);
+						//printf("%s\n", m_link->word);
 					}
 					m_flag=0;
 				}
