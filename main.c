@@ -43,7 +43,8 @@ int main(int argc, char *argv[])
 			      printf("This function is not available as of now\n");
 				  break;
 			case 5:
-			      printf("This function is not available as of now\n");
+			      //printf("This function is not available as of now\n");
+				  save_database(arr,HASHTABLE_SIZE);
 				  break;
 			case 6:
 			       return SUCCESS;

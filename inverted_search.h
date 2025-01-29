@@ -56,6 +56,7 @@ int create_database(file_list *listhead,hash_t *arr);
 int open_files(file_list *listhead);
 int display_database(hash_t *arr,int size);
 int find_index(char c);
+void save_database(hash_t *arr,int size);
 
 
 #endif
