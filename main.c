@@ -15,5 +15,6 @@ int main(int argc, char *argv[])
 	create_HT(arr,HASHTABLE_SIZE);
 	check_args(argc,argv,&head);
 	create_database(head,arr);
+	display_database(arr,HASHTABLE_SIZE);
 }
 
