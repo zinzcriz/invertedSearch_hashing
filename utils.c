@@ -90,6 +90,12 @@ int find_index(char c)
     {
         return 27;
     }
+    else if(c>= 65 && c<=90)
+    {
+        c=c+32;
+        c=c%97;
+        return c;
+    }
     else
     {
         c=c%97;

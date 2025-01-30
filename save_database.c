@@ -4,9 +4,18 @@ void save_database(hash_t *arr,int size)
 {
     struct main_node *m_link;
     struct sub_node *s_link;
+    char file_name[15];
+    start:
+    printf("Enter the file name to save database:");
+    scanf("%s",file_name);
+    if(strstr(file_name,".txt")==NULL)
+    {
+        printf("Enter a valid file name with .txt extension\n");
+        goto start;
+    }
     FILE *fptr;
     int flag=0;
-    if((fptr=fopen("file.txt","w"))==NULL)
+    if((fptr=fopen(file_name,"w"))==NULL)
     {
         printf("File opening not successfull!...\n");
         return;

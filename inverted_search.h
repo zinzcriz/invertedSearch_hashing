@@ -57,6 +57,7 @@ int open_files(file_list *listhead);
 int display_database(hash_t *arr,int size);
 int find_index(char c);
 void save_database(hash_t *arr,int size);
+int search(hash_t *arr, int size);
 
 
 #endif

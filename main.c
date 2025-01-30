@@ -40,10 +40,13 @@ int main(int argc, char *argv[])
 			      printf("This function is not available as of now\n");
 				  break;
 			case 4:
-			      printf("This function is not available as of now\n");
+			      //printf("This function is not available as of now\n");
+				  if(search(arr,HASHTABLE_SIZE)==FAILURE)
+				  {
+					printf("The entered word is not found!\n\n");
+				  }
 				  break;
 			case 5:
-			      //printf("This function is not available as of now\n");
 				  save_database(arr,HASHTABLE_SIZE);
 				  break;
 			case 6:
