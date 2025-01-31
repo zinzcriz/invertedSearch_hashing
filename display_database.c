@@ -1,7 +1,11 @@
 #include "inverted_search.h"
-
+extern int status;
 int display_database(hash_t *arr,int size)
 {
+    /*if(status!=1)
+    {
+        return FAILURE;
+    }*/
     struct main_node *m_link;
     struct sub_node *s_link;
     int flag=0;

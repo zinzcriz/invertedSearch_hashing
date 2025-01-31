@@ -6,6 +6,7 @@
 *Description	:This function acts like the driver function for the project inverted search
 ****************************************************************************************************************************************************/
 #include "inverted_search.h"
+int status=0;
 
 int main(int argc, char *argv[])
 {
@@ -26,6 +27,7 @@ int main(int argc, char *argv[])
 			case 1:
 			      create_database(head,arr);
 				  printf("Database created Successfully\n");
+				  //printf("%d\n",status);
 				  printf("\n");
 				  break;
 			case 2:
@@ -37,7 +39,8 @@ int main(int argc, char *argv[])
 				  printf("\n");
 				  break;
 			case 3:
-			      printf("This function is not available as of now\n");
+			      //printf("This function is not available as of now\n");
+				  update_database(head,arr);
 				  break;
 			case 4:
 			      //printf("This function is not available as of now\n");

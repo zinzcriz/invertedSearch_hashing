@@ -4,12 +4,13 @@
 // {
 // 	/* Definition here */
 // }
-
+extern int status;
 int create_database(file_list *listhead, hash_t *arr)
 {
 	if (listhead == NULL)
 		return FAILURE;
 	file_list *temp = listhead;
+	status=1;
 	char str[20];
 	int index;
 	struct main_node *m_link;

@@ -56,8 +56,12 @@ int create_database(file_list *listhead,hash_t *arr);
 int open_files(file_list *listhead);
 int display_database(hash_t *arr,int size);
 int find_index(char c);
+long isFile_empty(FILE *fp);
 void save_database(hash_t *arr,int size);
 int search(hash_t *arr, int size);
+int update_database(file_list *listhead, hash_t *arr);
+void update_mainnode(int index, char *word,int f_count,hash_t *arr);
+void update_subnode(int index,char *word,char *f_name,int wordcount,hash_t *arr);
 
 
 #endif

@@ -1,4 +1,3 @@
-#index;word;filecount;filename;wordcount;#
 #0;are;1;file2.txt;1;#
 #7;hai;1;file2.txt;1;#
 #7;how;1;file2.txt;1;#
