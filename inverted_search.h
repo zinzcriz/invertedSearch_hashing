@@ -8,6 +8,7 @@
 #define SUCCESS 1
 #define FAILURE 0
 #define CREATED -1
+#define DATABASE_EMPTY -2
 
 #define HASHTABLE_SIZE 28
 

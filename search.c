@@ -1,13 +1,18 @@
 #include "inverted_search.h"
-
+extern int status;
 int search(hash_t *arr, int size)
 {
+    if(status==0)
+    {
+        printf("Database is empty.Please create database to search words.\n\n");
+        return DATABASE_EMPTY;
+    }
     struct main_node *m_link;
     struct sub_node *s_link;
     char str[20];
     printf("Enter the word to search:");
     scanf("%s", str);
-    //printf("\n");
+    printf("\n");
     int flag = 0;
     int index = find_index(str[0]);
     if (arr[index].link != NULL)

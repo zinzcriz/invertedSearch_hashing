@@ -1,6 +1,7 @@
 
 #include "inverted_search.h"
 int status = 0;
+int update_status=0;
 
 int main(int argc, char *argv[])
 {

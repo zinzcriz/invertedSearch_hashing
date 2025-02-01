@@ -1,11 +1,17 @@
 #include "inverted_search.h"
 extern int status;
+extern int update_status;
 int update_database(file_list *listhead, hash_t *arr)
 {
     if(status==1)
     {
         printf("INFO: You cannot update database after database is created\n\n");
         return FAILURE;
+    }
+    else if(update_status==1)
+    {
+        printf("You cannot update database more than once!\n\n");
+        return CREATED;
     }
     char file_name[20];
     char header[50];
@@ -47,5 +53,6 @@ int update_database(file_list *listhead, hash_t *arr)
     }
     print_list(listhead);
     printf("\n");
+    update_status=1;
     return SUCCESS;
 }
