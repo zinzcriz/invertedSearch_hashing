@@ -55,7 +55,7 @@ int check_args(int argc, char *argv[], file_list **list_head)
     }
     if (*list_head == NULL)
         return FAILURE;
-    // print_list(*list_head);
+    print_list(*list_head);
     return SUCCESS;
 }
 

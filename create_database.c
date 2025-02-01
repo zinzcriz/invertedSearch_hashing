@@ -9,6 +9,10 @@ int create_database(file_list *listhead, hash_t *arr)
 {
 	if (listhead == NULL)
 		return FAILURE;
+	if(status==1)
+	{
+		return CREATED;
+	}
 	file_list *temp = listhead;
 	status=1;
 	char str[20];
@@ -102,4 +106,5 @@ int create_database(file_list *listhead, hash_t *arr)
 		}
 		temp = temp->link;
 	}
+	return SUCCESS;
 }

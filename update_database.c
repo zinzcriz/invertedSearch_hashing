@@ -1,7 +1,12 @@
 #include "inverted_search.h"
-
+extern int status;
 int update_database(file_list *listhead, hash_t *arr)
 {
+    if(status==1)
+    {
+        printf("INFO: You cannot update database after database is created\n\n");
+        return FAILURE;
+    }
     char file_name[20];
     char header[50];
     int filecount,wordcount,index;
@@ -18,7 +23,7 @@ int update_database(file_list *listhead, hash_t *arr)
         {
             if ((file_length=isFile_empty(fp))>0)
             {
-                printf("%ld\n",file_length);
+                //printf("%ld\n",file_length);
                 //fscanf(fp,"#%[^\n]",header);
                 while (ftell(fp)<file_length)
                 {
@@ -33,10 +38,14 @@ int update_database(file_list *listhead, hash_t *arr)
                         fscanf(fp,"%[^;];%d;",file_name,&wordcount);
                         //printf("%s %d\n",file_name,wordcount);
                         update_subnode(index,word_name,file_name,wordcount,arr);
+                        delete_updatedNode(&listhead,file_name);
                     }
                     fscanf(fp,"#\n",temp);
                 }
             }
         }
     }
+    print_list(listhead);
+    printf("\n");
+    return SUCCESS;
 }

@@ -61,6 +61,34 @@ void update_subnode(int index,char *word,char *f_name,int wordcount,hash_t *arr)
         }
         m_link=m_link->main_link;
     }
-    
+}
 
+int delete_updatedNode(file_list **listhead,char *f_name)
+{
+    if(*listhead==NULL)
+          return FAILURE;
+    file_list *temp=*listhead;
+    file_list *prev=NULL;
+    while(temp!=NULL)
+    {
+        if(strcmp(temp->file_name,f_name)==0)
+        {
+            if(*listhead==temp)
+            {
+                *listhead=temp->link;
+                free(temp);
+                temp=*listhead;
+                return SUCCESS;
+            }
+            else
+            {
+                prev->link=temp->link;
+                free(temp);
+                return SUCCESS;
+            }
+        }
+        prev=temp;
+        temp=temp->link;
+    }
+    return FAILURE;
 }
