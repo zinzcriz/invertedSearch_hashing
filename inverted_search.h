@@ -63,7 +63,7 @@ void save_database(hash_t *arr,int size);
 int search(hash_t *arr, int size);
 
 //update functions
-int update_database(file_list *listhead, hash_t *arr);
+int update_database(file_list **listhead, hash_t *arr);
 void update_mainnode(int index, char *word,int f_count,hash_t *arr);
 void update_subnode(int index,char *word,char *f_name,int wordcount,hash_t *arr);
 int delete_updatedNode(file_list **listhead,char *f_name);

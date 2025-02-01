@@ -77,7 +77,7 @@ int delete_updatedNode(file_list **listhead,char *f_name)
             {
                 *listhead=temp->link;
                 free(temp);
-                temp=*listhead;
+                //temp=listhead;
                 return SUCCESS;
             }
             else

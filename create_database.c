@@ -8,7 +8,9 @@ extern int status;
 int create_database(file_list *listhead, hash_t *arr)
 {
 	if (listhead == NULL)
+	{
 		return FAILURE;
+	}
 	if(status==1)
 	{
 		return CREATED;

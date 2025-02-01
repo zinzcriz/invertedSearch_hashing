@@ -1,7 +1,7 @@
 #include "inverted_search.h"
 extern int status;
 extern int update_status;
-int update_database(file_list *listhead, hash_t *arr)
+int update_database(file_list **listhead, hash_t *arr)
 {
     if(status==1)
     {
@@ -20,6 +20,7 @@ int update_database(file_list *listhead, hash_t *arr)
     char temp[5];
     FILE *fp;
     long file_length;
+    label:
     printf("Enter the file name to update:");
     scanf("%s", file_name);
     if (strstr(file_name, ".txt") != NULL)
@@ -44,14 +45,22 @@ int update_database(file_list *listhead, hash_t *arr)
                         fscanf(fp,"%[^;];%d;",file_name,&wordcount);
                         //printf("%s %d\n",file_name,wordcount);
                         update_subnode(index,word_name,file_name,wordcount,arr);
-                        delete_updatedNode(&listhead,file_name);
+                        delete_updatedNode(listhead,file_name);
                     }
                     fscanf(fp,"#\n",temp);
                 }
             }
         }
+        else{
+            printf("%s is not available\n\n",file_name);
+            return FAILURE;
+        }
     }
-    print_list(listhead);
+    else{
+        printf("Filename should contain a .txt extension\n");
+        goto label;
+    }
+    print_list(*listhead);
     printf("\n");
     update_status=1;
     return SUCCESS;

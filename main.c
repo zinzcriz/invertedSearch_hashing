@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
 				break;
 			case 3:
 				// printf("This function is not available as of now\n");
-				if(update_database(head, arr)==SUCCESS)
+				if(update_database(&head, arr)==SUCCESS)
 				{
 					printf("Database updated Successfully!\n");
 					printf("\n");
