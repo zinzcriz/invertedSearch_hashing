@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 				printf("\n");
 				break;
 			case 2:
-				if (display_database(arr, HASHTABLE_SIZE) == FAILURE)
+				if (display_database(arr) == FAILURE)
 				{
 					printf("No Database found!\n");
 					printf("Please create Database to continue\n");
