@@ -1,6 +1,6 @@
 #include "inverted_search.h"
 
-void update_mainnode(int index, char *word,int f_count,hash_t *arr)
+void update_mainnode(int index, char *word, int f_count, hash_t *arr)
 {
     struct main_node *m_link;
     if (arr[index].link == NULL)
@@ -11,84 +11,132 @@ void update_mainnode(int index, char *word,int f_count,hash_t *arr)
         m_link->main_link = NULL;
         arr[index].link = m_link;
         m_link->sub_link = NULL;
-        //printf("%s\n",(arr[index].link)->word);
+        // printf("%s\n",(arr[index].link)->word);
     }
-    else{
+    else
+    {
         struct main_node *new;
-        m_link=arr[index].link;
-        while(m_link->main_link!=NULL)
-             m_link=m_link->main_link;
-        new=malloc(sizeof(struct main_node));
-        new->file_count=f_count;
-        new->main_link=NULL;
-        strcpy(new->word,word);
-        new->sub_link=NULL;
-        m_link->main_link=new;
-        //printf("%s\n",new->word);
+        m_link = arr[index].link;
+        while (m_link->main_link != NULL)
+            m_link = m_link->main_link;
+        new = malloc(sizeof(struct main_node));
+        new->file_count = f_count;
+        new->main_link = NULL;
+        strcpy(new->word, word);
+        new->sub_link = NULL;
+        m_link->main_link = new;
+        // printf("%s\n",new->word);
     }
 }
 
-void update_subnode(int index,char *word,char *f_name,int wordcount,hash_t *arr)
+void update_subnode(int index, char *word, char *f_name, int wordcount, hash_t *arr)
 {
     struct main_node *m_link;
     struct sub_node *s_link;
-    m_link=arr[index].link;
-    while(m_link!=NULL)
+    m_link = arr[index].link;
+    while (m_link != NULL)
     {
-        if(strcmp(m_link->word,word)==0)
+        if (strcmp(m_link->word, word) == 0)
         {
-            if(m_link->sub_link==NULL)
+            if (m_link->sub_link == NULL)
             {
                 s_link = malloc(sizeof(struct sub_node));
-                strcpy(s_link->filename,f_name);
-                s_link->word_count=wordcount;
-                s_link->link=NULL;
-                m_link->sub_link=s_link;
-                //printf("%s\n",s_link->filename);
+                strcpy(s_link->filename, f_name);
+                s_link->word_count = wordcount;
+                s_link->link = NULL;
+                m_link->sub_link = s_link;
+                // printf("%s\n",s_link->filename);
             }
             else
             {
-                s_link=m_link->sub_link;
-                while(s_link->link!=NULL)
-                    s_link=s_link->link;
+                s_link = m_link->sub_link;
+                while (s_link->link != NULL)
+                    s_link = s_link->link;
                 struct sub_node *new;
-                new=malloc(sizeof(struct sub_node));
-                strcpy(new->filename,f_name);
-                new->word_count=wordcount;
-                new->link=NULL;
-                //printf("%s\n",new->filename);
+                new = malloc(sizeof(struct sub_node));
+                strcpy(new->filename, f_name);
+                new->word_count = wordcount;
+                new->link = NULL;
+                // printf("%s\n",new->filename);
             }
         }
-        m_link=m_link->main_link;
+        m_link = m_link->main_link;
     }
 }
 
-int delete_updatedNode(file_list **listhead,char *f_name)
+int delete_updatedNode(file_list **listhead, char *f_name)
 {
-    if(*listhead==NULL)
-          return FAILURE;
-    file_list *temp=*listhead;
-    file_list *prev=NULL;
-    while(temp!=NULL)
+    if (*listhead == NULL)
+        return FAILURE;
+    file_list *temp = *listhead;
+    file_list *prev = NULL;
+    while (temp != NULL)
     {
-        if(strcmp(temp->file_name,f_name)==0)
+        if (strcmp(temp->file_name, f_name) == 0)
         {
-            if(*listhead==temp)
+            if (*listhead == temp)
             {
-                *listhead=temp->link;
+                *listhead = temp->link;
                 free(temp);
-                //temp=listhead;
+                // temp=listhead;
                 return SUCCESS;
             }
             else
             {
-                prev->link=temp->link;
+                prev->link = temp->link;
                 free(temp);
                 return SUCCESS;
             }
         }
-        prev=temp;
-        temp=temp->link;
+        prev = temp;
+        temp = temp->link;
     }
     return FAILURE;
 }
+
+int validate_updatefile(FILE *fp)
+{
+    char ch1,ch2;
+    long f_len=find_fileLength(fp);
+    ch1=fgetc(fp);
+    rewind(fp);
+    fseek(fp,-2,SEEK_CUR);
+    ch2=fgetc(fp);
+    //printf("%c %c\n",ch1,ch2);
+    rewind(fp);
+    //fseek(fp,0,SEEK_SET);
+    if(ch1=='#' && ch2=='#')
+    {
+        return SUCCESS;
+    }
+    else
+    {
+        return FAILURE;
+    }
+
+}
+
+// int validate_updatefile(FILE *fp)
+// {
+//     if (fp == NULL)
+//         return FAILURE;
+
+//     char ch1, ch2;
+//     long f_len = find_fileLength(fp);
+
+//     if (f_len < 2) // At least two characters required
+//         return FAILURE;
+
+//     rewind(fp); // Move to the start
+//     ch1 = fgetc(fp);
+
+//     fseek(fp, -2, SEEK_END); // Move to the last but one character
+//     ch2 = fgetc(fp);
+
+//     rewind(fp); // Reset file pointer for further use
+
+//     if (ch1 == '#' && ch2 == '#')
+//         return SUCCESS;
+//     else
+//         return FAILURE;
+// }

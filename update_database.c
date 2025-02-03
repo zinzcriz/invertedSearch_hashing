@@ -5,15 +5,16 @@ int update_database(file_list **listhead, hash_t *arr)
 {
     if(status==1)
     {
-        printf("INFO: You cannot update database after database is created\n\n");
+        printf("ERROR: You cannot update database after database is created\n\n");
         return FAILURE;
     }
     else if(update_status==1)
     {
-        printf("You cannot update database more than once!\n\n");
+        printf("ERROR: You cannot update database more than once!\n\n");
         return CREATED;
     }
     char file_name[20];
+    char file_nme[20];
     char header[50];
     int filecount,wordcount,index;
     char word_name[15];
@@ -28,36 +29,40 @@ int update_database(file_list **listhead, hash_t *arr)
         fp = fopen(file_name, "r");
         if (fp)
         {
-            if ((file_length=isFile_empty(fp))>0)
+            if (validate_updatefile(fp)==SUCCESS)
+            //if((file_length=find_fileLength(fp))>0)
             {
-                //printf("%ld\n",file_length);
-                //fscanf(fp,"#%[^\n]",header);
+                file_length=find_fileLength(fp);
                 while (ftell(fp)<file_length)
                 {
                     fscanf(fp,"#%d;%[^;];%d;",&index,word_name,&filecount);
-                    /*fscanf(fp,"#%d;",&index);
-                    fscanf(fp,"%[^;];",word_name);
-                    fscanf(fp,"%d;",&filecount);*/
-                    //printf("%d %s %d\n",index,word_name,filecount);
+                    //convertTo_lower(word_name);
                     update_mainnode(index,word_name,filecount,arr);
                     for(int i=0;i<filecount;i++)
                     {
-                        fscanf(fp,"%[^;];%d;",file_name,&wordcount);
+                        fscanf(fp,"%[^;];%d;",file_nme,&wordcount);
+                        /*if (strstr(file_nme, ".txt") == NULL)
+                        {
+                            continue;
+                        }*/
                         //printf("%s %d\n",file_name,wordcount);
-                        update_subnode(index,word_name,file_name,wordcount,arr);
-                        delete_updatedNode(listhead,file_name);
+                        update_subnode(index,word_name,file_nme,wordcount,arr);
+                        delete_updatedNode(listhead,file_nme);
                     }
                     fscanf(fp,"#\n",temp);
                 }
             }
+            else{
+                printf("ERROR: This file is not compatible to update\n");
+            }
         }
         else{
-            printf("%s is not available\n\n",file_name);
+            printf("ERROR: %s is not available\n\n",file_name);
             return FAILURE;
         }
     }
     else{
-        printf("Filename should contain a .txt extension\n");
+        printf("ERROR: Filename should contain a .txt extension\n");
         goto label;
     }
     print_list(*listhead);

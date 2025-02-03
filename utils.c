@@ -12,7 +12,7 @@ int check_args(int argc, char *argv[], file_list **list_head)
                 FILE *file = fopen(argv[i], "r");
                 if (file)
                 {
-                    if ((file_size=isFile_empty(file))>0)
+                    if ((file_size=find_fileLength(file))>0)
                     {
                         fclose(file);
                         if (search_duplicates(*list_head, argv[i]) != SUCCESS)
@@ -23,34 +23,34 @@ int check_args(int argc, char *argv[], file_list **list_head)
                             }
                             else
                             {
-                                printf("%s is not added\n", argv[i]);
+                                printf("INFO: %s is not added\n", argv[i]);
                             }
                         }
                         else
                         {
-                            printf("%s is already added\n", argv[i]);
+                            printf("INFO: %s is already added\n", argv[i]);
                         }
                     }
                     else
                     {
-                        printf("%s is empty file\n", argv[i]);
+                        printf("INFO: %s is empty file\n", argv[i]);
                     }
                 }
                 else
                 {
-                    printf("%s is not available\n", argv[i]);
+                    printf("INFO: %s is not available\n", argv[i]);
                 }
             }
             else
             {
-                printf("%s is not .txt file\n", argv[i]);
+                printf("INFO: %s is not .txt file\n", argv[i]);
                 continue;
             }
         }
     }
     else
     {
-        printf("Argument count should be more than one\n");
+        printf("INFO: Argument count should be more than one\n");
         return FAILURE;
     }
     if (*list_head == NULL)
@@ -98,7 +98,7 @@ int find_index(char c)
     }
 }
 
-long isFile_empty(FILE *fp)
+long find_fileLength(FILE *fp)
 {
     long file_size;
     file_size = 0;
@@ -109,4 +109,15 @@ long isFile_empty(FILE *fp)
     return file_size;
     //if(file_size>0)
         //return SUCCESS;
+}
+
+void convertTo_lower(char *str)
+{
+    int i=0;
+    while(str[i]!='\0')
+    {
+        str[i]=tolower(str[i]);
+        i++;
+    }
+    return;
 }

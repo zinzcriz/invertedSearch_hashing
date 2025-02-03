@@ -33,6 +33,7 @@ int create_database(file_list *listhead, hash_t *arr)
 			//printf("%s file is opened\n", temp->file_name);
 			while (fscanf(fp, "%s", str) != EOF)
 			{
+				convertTo_lower(str);
 			    index=find_index(str[0]);
 				//printf("%d\n",index);
 				if (arr[index].link == NULL)
