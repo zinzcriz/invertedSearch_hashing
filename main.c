@@ -44,7 +44,6 @@ int main(int argc, char *argv[])
 				printf("\n");
 				break;
 			case 3:
-				// printf("This function is not available as of now\n");
 				if(update_database(&head, arr)==SUCCESS)
 				{
 					printf("Database updated Successfully!\n");
@@ -52,7 +51,6 @@ int main(int argc, char *argv[])
 				}
 				break;
 			case 4:
-				// printf("This function is not available as of now\n");
 				if (search(arr, HASHTABLE_SIZE) == FAILURE)
 				{
 					printf("The entered word is not found!\n\n");

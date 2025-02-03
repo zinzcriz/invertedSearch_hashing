@@ -36,15 +36,15 @@ int update_database(file_list **listhead, hash_t *arr)
                 while (ftell(fp)<file_length)
                 {
                     fscanf(fp,"#%d;%[^;];%d;",&index,word_name,&filecount);
-                    //convertTo_lower(word_name);
+                    convertTo_lower(word_name);
                     update_mainnode(index,word_name,filecount,arr);
                     for(int i=0;i<filecount;i++)
                     {
                         fscanf(fp,"%[^;];%d;",file_nme,&wordcount);
-                        /*if (strstr(file_nme, ".txt") == NULL)
+                        if (strstr(file_nme, ".txt") == NULL)
                         {
                             continue;
-                        }*/
+                        }
                         //printf("%s %d\n",file_name,wordcount);
                         update_subnode(index,word_name,file_nme,wordcount,arr);
                         delete_updatedNode(listhead,file_nme);

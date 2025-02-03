@@ -57,7 +57,6 @@ int check_args(int argc,char *argv[],file_list **list_head);
 int create_database(file_list *listhead,hash_t *arr);
 int open_files(file_list *listhead);
 void convertTo_lower(char *str);
-//int display_database(hash_t *arr,int size);
 int display_database(hash_t *);
 int find_index(char c);
 long find_fileLength(FILE *fp);

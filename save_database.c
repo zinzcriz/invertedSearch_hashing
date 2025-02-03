@@ -20,7 +20,6 @@ void save_database(hash_t *arr,int size)
         printf("File opening not successfull!...\n");
         return;
     }
-    //fprintf(fptr,"#index;word;filecount;filename;wordcount;#\n");
     for(int i=0;i<size;i++)
     {
         if(arr[i].link!=NULL)
@@ -31,18 +30,11 @@ void save_database(hash_t *arr,int size)
             {
                 s_link=m_link->sub_link;
                 fprintf(fptr,"#%d;",i);
-                //fprintf(fptr,"\t");
                 fprintf(fptr,"%s;",m_link->word);
-                //fprintf(fptr,"\t");
                 fprintf(fptr,"%d;",m_link->file_count);
-                //fprintf(fptr,"\t");
-                //printf("Files: ");
                 while(s_link!=NULL)
                 {
                     fprintf(fptr,"%s;%d;",s_link->filename,s_link->word_count);
-                    //fprintf(fptr,"\t");
-                    //printf("%d",s_link->word_count);
-                    //printf("  ");
                     s_link=s_link->link;
                 }
                 m_link=m_link->main_link;

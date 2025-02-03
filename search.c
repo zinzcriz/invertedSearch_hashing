@@ -30,8 +30,6 @@ int search(hash_t *arr, int size)
                 {
                     printf("In file: %s  %d time/s", s_link->filename, s_link->word_count);
                     printf("\n");
-                    // printf("%d",s_link->word_count);
-                    // printf("  ");
                     s_link = s_link->link;
                 }
             }

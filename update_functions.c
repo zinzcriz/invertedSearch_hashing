@@ -115,28 +115,3 @@ int validate_updatefile(FILE *fp)
     }
 
 }
-
-// int validate_updatefile(FILE *fp)
-// {
-//     if (fp == NULL)
-//         return FAILURE;
-
-//     char ch1, ch2;
-//     long f_len = find_fileLength(fp);
-
-//     if (f_len < 2) // At least two characters required
-//         return FAILURE;
-
-//     rewind(fp); // Move to the start
-//     ch1 = fgetc(fp);
-
-//     fseek(fp, -2, SEEK_END); // Move to the last but one character
-//     ch2 = fgetc(fp);
-
-//     rewind(fp); // Reset file pointer for further use
-
-//     if (ch1 == '#' && ch2 == '#')
-//         return SUCCESS;
-//     else
-//         return FAILURE;
-// }
