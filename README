@@ -1,6 +1,3 @@
-Write the makefile.
-Write the header file(inverted_search.h)
-Run the makefile
-See the output
+# Inverted Search using hashing
 
 
